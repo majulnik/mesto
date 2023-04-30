@@ -269,21 +269,17 @@
     cursor: pointer;
 }
 
+.elements__like:hover {
+    background-image: url(./images/like_active.png);
+}
+
 .elements__like-area {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.elements__like_active {
-    width: 22px;
-    height: 19px;
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    background-image: url(./images/like_active.png);
-    cursor: pointer;
-}
+
 
 .elements__like-counter {
     margin: 0;
