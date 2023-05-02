@@ -15,12 +15,12 @@
 @import url('../blocks/profile/__button/button_type_add/profile__button_type_add.css');
 
 @import url('../blocks/elements/elements.css');
-@import url('../blocks/elements/__element/element.css');
-@import url('../blocks/elements/__element/__info/element__info.css');
-@import url('../blocks/elements/__element/__description/element__description.css');
-@import url('../blocks/elements/__element/__like/element__like.css');
-@import url('../blocks/elements/__element/__like-area/element__like-area.css');
-@import url('../blocks/elements/__element/__like-counter/element__like-counter.css');
+@import url('../blocks/elements/__image/elements__image.css');
+@import url('../blocks/elements/__info/elements__info.css');
+@import url('../blocks/elements/__description/elements__description.css');
+@import url('../blocks/elements/__like/elements__like.css');
+@import url('../blocks/elements/__like-area/elements__like-area.css');
+@import url('../blocks/elements/__like-counter/elements__like-counter.css');
 
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
