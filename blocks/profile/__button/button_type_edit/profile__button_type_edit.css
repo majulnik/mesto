@@ -1,0 +1,20 @@
+.profile__button_type_edit {
+    vertical-align: 0.6em;
+    width: 24px;
+    height: 24px;
+    background-image: url(../../../../images/pen.svg);
+    background-position: center;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 1px solid #FFFFFF;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__button_type_edit {
+        vertical-align: 0.5em;
+        width: 18px;
+        height: 18px;
+        padding: 0;
+    }
+}

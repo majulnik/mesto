@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./vendor/normalize.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto - cервис фотографий </title>
 </head>
 
@@ -34,9 +33,9 @@
                 <img class="element" src="./images/element-baikal.jpg" alt="Фото Байкал">
                 <div class="element__info">
                     <h2 class="element__description">Байкал</h2>
-                    <div class="elements__like-area">
-                        <button type="button" class="elements__like " aria-label="Like"></button>
-                        <p class="elements__like-counter"></p>
+                    <div class="element__like-area">
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
+                        <p class="element__like-counter"></p>
                     </div>
                 </div>
             </div>
@@ -44,9 +43,9 @@
                 <img class="element" src="./images/element-dagestan.jpg" alt="Фото Дагестан">
                 <div class="element__info">
                     <h2 class="element__description">Дагестан</h2>
-                    <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_active" aria-label="Like"></button>
-                        <p class="elements__like-counter"></p>
+                    <div class="element__like-area">
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
+                        <p class="element__like-counter"></p>
                     </div>
                 </div>
             </div>
@@ -54,9 +53,9 @@
                 <img class="element" src="./images/element-kaliningrad.jpg" alt="Фото Калининград">
                 <div class="element__info">
                     <h2 class="element__description">Калининград</h2>
-                    <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_active" aria-label="Like"></button>
-                        <p class="elements__like-counter"></p>
+                    <div class="element__like-area">
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
+                        <p class="element__like-counter"></p>
                     </div>
                 </div>
             </div>
@@ -64,9 +63,9 @@
                 <img class="element" src="./images/element-karelia.jpg" alt="Фото Карелия">
                 <div class="element__info">
                     <h2 class="element__description">Карелия</h2>
-                    <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_active" aria-label="Like"></button>
-                        <p class="elements__like-counter"></p>
+                    <div class="element__like-area">
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
+                        <p class="element__like-counter"></p>
                     </div>
                 </div>
             </div>
@@ -74,9 +73,9 @@
                 <img class="element" src="./images/element-sankt-peterburg.jpg" alt="Фото Санкт-Петербург">
                 <div class="element__info">
                     <h2 class="element__description">Санкт-Петербург</h2>
-                    <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_active" aria-label="Like"></button>
-                        <p class="elements__like-counter"></p>
+                    <div class="element__like-area">
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
+                        <p class="element__like-counter"></p>
                     </div>
                 </div>
             </div>
@@ -84,9 +83,9 @@
                 <img class="element" src="./images/element-velikyi-ustug.jpg" alt="Фото ">    
                 <div class="element__info">
                     <h2 class="element__description">Великий Устюг</h2>
-                    <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_active" aria-label="Like"></button>
-                        <p class="elements__like-counter"></p>
+                    <div class="element__like-area">
+                        <button type="button" class="element__like element__like_active" aria-label="Like"></button>
+                        <p class="element__like-counter"></p>
                     </div>
                 </div>
             </div>
@@ -103,7 +102,7 @@
             <h2 class="popup__title">Редактировать профиль</h2>
             <input class="popup__name" type="text" id="profile-name" name="profile-name" minlength="2" maxlength="25">
             <input class="popup__description" type="text" id="profile-description" name="profile-description" minlength="2" maxlength="40">
-            <button class="popup__save popup__save_active" type="button" title="Сохранить изменения">Сохранить</button>
+            <button class="popup__save" type="button" title="Сохранить изменения">Сохранить</button>
           </form>
       <script src="./scripts/index.js"></script>
     </div>   
