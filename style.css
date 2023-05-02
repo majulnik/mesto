@@ -273,9 +273,11 @@
     opacity: 0.5;
 }
 
+/*
 .elements__like_active {
-    background-image: url(./images/like_active.png);
+    background-image: url(./images/like_active.svg);
 }
+*/
 
 .elements__like-area {
     display: flex;
@@ -397,8 +399,11 @@
     font-weight: 400;
     color: #000000;
     line-height: 17px;
-    border-bottom: 1px solid rgba(0,0,0,.2);
     margin: 0 0 0 36px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 767px) {
@@ -413,12 +418,15 @@
 .popup__description {
     max-width: 358px;
     padding: 30px 0 13px 0;
-    border-bottom: 1px solid rgba(0,0,0,.2);
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
     color: #000000;
     margin: 0 0 0 36px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 767px) {
@@ -429,6 +437,7 @@
         line-height: 16.94pxpx;
     }
 }
+
 
 .popup__save {
 
