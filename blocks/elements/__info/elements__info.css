@@ -1,9 +1,9 @@
 .elements__info {
     align-items: center;
-    background-color: #FFFFFF;
+    background-color: #fff;
     border-radius: 0 0 10px 10px;
     display: flex;
-    height: 30px;
+    min-height: 30px;
     justify-content: space-between;
     margin: 0;
     padding: 25px 20px;

@@ -1,5 +1,5 @@
-@import url('../vendor/fonts.css');
 @import url('../vendor/normalize.css');
+@import url('../vendor/fonts.css');
 @import url('../blocks/page/page.css');
 
 @import url('../blocks/header/header.css');
@@ -10,35 +10,27 @@
 @import url('../blocks/profile/__info/profile__info.css');
 @import url('../blocks/profile/__intro/profile__intro.css');
 @import url('../blocks/profile/__name/profile__name.css');
-@import url('../blocks/profile/__button/button_type_edit/profile__button_type_edit.css');
+@import url('../blocks/profile/__button/_type/profile__button_type_edit.css');
 @import url('../blocks/profile/__description/profile__description.css');
-@import url('../blocks/profile/__button/button_type_add/profile__button_type_add.css');
+@import url('../blocks/profile/__button/_type/profile__button_type_add.css');
 
 @import url('../blocks/elements/elements.css');
 @import url('../blocks/elements/__image/elements__image.css');
 @import url('../blocks/elements/__info/elements__info.css');
 @import url('../blocks/elements/__description/elements__description.css');
 @import url('../blocks/elements/__like/elements__like.css');
+@import url('../blocks/elements/__like/_status/elements__like_status_active.css');
 @import url('../blocks/elements/__like-area/elements__like-area.css');
-@import url('../blocks/elements/__like-counter/elements__like-counter.css');
 
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
 
 @import url('../blocks/popup/popup.css');
-@import url('../blocks/popup/__opened/popup__opened.css');
+@import url('../blocks/popup/_opened/popup_opened.css');
 @import url('../blocks/popup/__container/popup__container.css');
 @import url('../blocks/popup/__close/popup__close.css');
 @import url('../blocks/popup/__title/popup__title.css');
+@import url('../blocks/popup/__input/popup__input.css');
 @import url('../blocks/popup/__name/popup__name.css');
 @import url('../blocks/popup/__description/popup__description.css');
 @import url('../blocks/popup/__save/popup__save.css');
-
-
-
-
-
-
-
-
-

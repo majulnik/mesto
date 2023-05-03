@@ -2,10 +2,11 @@
     margin: 48px 36px 37px;
     width: 358px;
     height: 50px;
-    background-color: #000000;
+    background-color: #000;
     border-radius: 2px;
     cursor: pointer;
-    color: #FFFFFF;
+    color: #fff;
+    border: none;
 }
 
 @media screen and (max-width: 767px) {
@@ -17,8 +18,5 @@
 }
 
 .popup__save:hover {
-    background: #000000;
     opacity: 0.8;
-    border-radius: 2px;
-    cursor: pointer;
 }
