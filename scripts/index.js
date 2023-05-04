@@ -10,7 +10,6 @@ let ButtonPopupOpen = document.querySelector('.profile__button_type_edit');
 let popup = document.querySelector('.popup');
 
 let buttonPopupClose = popup.querySelector('.popup__close');
-let popupSaveButton = formElement.querySelector('.popup__save');
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
