@@ -23,7 +23,7 @@
                     <h1 class="profile__name">Юлия Матросова</h1>
                     <button class="profile__button profile__button_type_edit" type="button" title="Редактировать профиль" aria-label="Редактировать профиль"></button>     
                     <p class="profile__description">Тот еще путешественник</p>
-                </div>            
+                </div>
             </div>            
             <button class="profile__button profile__button_type_add" type="button" title="Добавить фотографию" aria-label="Добавить фотографию"></button>
         </section>
@@ -34,7 +34,7 @@
                 <div class="elements__info">
                     <h2 class="elements__description">Байкал</h2>
                     <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_status_active" aria-label="Like"></button>
+                        <button type="button" class="elements__like" aria-label="Like"></button>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <div class="elements__info">
                     <h2 class="elements__description">Дагестан</h2>
                     <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_status_active" aria-label="Like"></button>
+                        <button type="button" class="elements__like" aria-label="Like"></button>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <div class="elements__info">
                     <h2 class="elements__description">Калининград</h2>
                     <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_status_active" aria-label="Like"></button>
+                        <button type="button" class="elements__like" aria-label="Like"></button>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 <div class="elements__info">
                     <h2 class="elements__description">Карелия</h2>
                     <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_status_active" aria-label="Like"></button>
+                        <button type="button" class="elements__like" aria-label="Like"></button>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                 <div class="elements__info">
                     <h2 class="elements__description">Санкт-Петербург</h2>
                     <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_status_active" aria-label="Like"></button>
+                        <button type="button" class="elements__like" aria-label="Like"></button>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                 <div class="elements__info">
                     <h2 class="elements__description">Великий Устюг</h2>
                     <div class="elements__like-area">
-                        <button type="button" class="elements__like elements__like_status_active" aria-label="Like"></button>
+                        <button type="button" class="elements__like" aria-label="Like"></button>
                     </div>
                 </div>
             </div>
@@ -93,10 +93,10 @@
     <div class="popup">
         <div class="popup__container popup__container_type_profile">            
               <h2 class="popup__title">Редактировать профиль</h2>
-              <button class="popup__close" type="button" alt="Закрыть окно редактирования профиля"></button>             
+              <button class="popup__close" type="button"></button>             
               <form name="UserProfile">
-                <input class="popup__input popup__name" type="text" placeholder="Имя" id="profile-name" name="profile-name" minlength="2" maxlength="25">
-                <input class="popup__input popup__description" type="text" placeholder="О себе" id="profile-description" name="profile-description" minlength="2" maxlength="40">
+                <input class="popup__input" type="text" placeholder="Имя" id="profile-name" name="profile-name" minlength="2" maxlength="25">
+                <input class="popup__input" type="text" placeholder="О себе" id="profile-description" name="profile-description" minlength="2" maxlength="35">
               </form>
             <button class="popup__save" type="submit" title="Сохранить изменения">Сохранить</button>
         </div>

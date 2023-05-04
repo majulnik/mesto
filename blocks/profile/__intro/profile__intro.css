@@ -1,11 +1,14 @@
 .profile__intro {
     flex-direction: column;
     padding-left: 27px;
+    width: calc(100% - 120px);
+    box-sizing: border-box;
 }
 
 @media screen and (max-width: 767px) {
     .profile__intro {
         align-items: center;
         max-width: 320px;
+        width: 100%;
     }
 }
