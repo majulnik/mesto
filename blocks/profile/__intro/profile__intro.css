@@ -9,6 +9,7 @@
     .profile__intro {
         align-items: center;
         max-width: 320px;
+        padding-left: 0;
         width: 100%;
     }
 }
