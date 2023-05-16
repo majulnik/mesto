@@ -1,26 +1,96 @@
-let formElement = document.querySelector('.popup__container_type_profile');
+// 1. Шесть карточек «из коробки» - добавление фотографий через template
+const initialCards = [
+  {
+    name: 'Байкал',
+    link: 'https://images.unsplash.com/photo-1652167934538-c0b4ab5ced1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+    alt: 'Фото Байкал',
+    like: false,
+  },
+  {
+    name: 'Дагестан',
+    link: 'https://images.unsplash.com/photo-1627327660729-a48ba87c4bb5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
+    alt: 'Фото Дагестан',
+    like: false,
+  },
+  {
+    name: 'Калининград',
+    link: 'https://images.unsplash.com/photo-1679262353529-e85c6ef78a8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+    alt: 'Фото Калининград',
+    like: false,
+  },
+  {
+    name: 'Карелия',
+    link: 'https://images.unsplash.com/photo-1575582293156-7d185b60c7bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+    alt: 'Фото Карелия',
+    like: false,
+  },
+  {
+    name: 'Санкт-Петербург',
+    link: 'https://images.unsplash.com/photo-1597533849860-5a04a21a7b3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+    alt: 'Фото Санкт-Петербург',
+    like: false,
+  },
+  {
+    name: 'Великий Устюг',
+    link: 'https://images.unsplash.com/photo-1608478870699-0c4809cccd25?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=943&q=80',
+    alt: 'Фото Великий Устюг',
+    like: false,
+  }
+];
 
-let nameInput = formElement.querySelector('#profile-name');
-let jobInput = formElement.querySelector('#profile-description');
+const formElement = document.querySelector('.popup__container_type_profile');
 
-let profileNameElement = document.querySelector('.profile__name');
-let profileDescriptionElement = document.querySelector('.profile__description');
+const nameInput = formElement.querySelector('#profile-name');
+const jobInput = formElement.querySelector('#profile-description');
 
-let ButtonPopupOpen = document.querySelector('.profile__button_type_edit');
-let popup = document.querySelector('.popup');
+const placeInput = document.querySelector('#new-place');
+const linkInput = document.querySelector('#new-link');
+console.log (placeInput, linkInput)
 
-let buttonPopupClose = popup.querySelector('.popup__close');
+const profileNameElement = document.querySelector('.profile__name');
+const profileDescriptionElement = document.querySelector('.profile__description');
+
+const ButtonPopupOpen = document.querySelector('.profile__button_type_edit');
+const popup = document.getElementById('profile_popup');
+const popupItem = document.getElementById('item_popup');
+
+const buttonPopupClose = popup.querySelector('.popup__close');
+
+const buttonItemPopupClose = document.getElementById('closeItemPopup');
+const buttonItemPopupOpen = document.getElementById('openItemPopup');
+const buttonItemPopupSave = document.getElementById('saveItem');
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
 
-  let nameValue = nameInput.value;
-  let descriptionValue = jobInput.value;
+  const nameValue = nameInput.value;
+  const descriptionValue = jobInput.value;
 
   profileNameElement.textContent = nameValue;
   profileDescriptionElement.textContent = descriptionValue;
 
   closePopup();
+}
+
+// Добавление новой карточки на страницу
+function handleItemAdd(evt) {
+  evt.preventDefault();
+  closeItemPopup();
+
+  const itemValue = placeInput.value;
+  const linkValue = linkInput.value;
+
+  const newItem = 
+  {
+    name: itemValue,
+    link: linkValue,
+    alt: '',
+    like: false,
+  };
+  initialCards.unshift(newItem);
+  displayElements(initialCards);
+
+
 }
 
 function openPopup() {
@@ -33,57 +103,39 @@ function closePopup() {
   popup.classList.remove('popup_opened');
 }
 
+function openItemPopup() {
+  nameInput.value = profileNameElement.textContent;
+  jobInput.value = profileDescriptionElement.textContent;
+  popupItem.classList.add('popup_opened');
+}
+
+function closeItemPopup() {
+  popupItem.classList.remove('popup_opened');
+}
+
 ButtonPopupOpen.addEventListener('click', openPopup);
 
 buttonPopupClose.addEventListener('click', closePopup);
 
 formElement.addEventListener('submit', handleFormSubmit);
 
-// 1. Шесть карточек «из коробки» - добавление фотографий через template
+// 2. Открытие и закрытие попапа с добавлением места
+buttonItemPopupOpen.addEventListener('click', openItemPopup);
 
-const initialCards = [
-  {
-    name: 'Байкал',
-    link: 'https://images.unsplash.com/photo-1652167934538-c0b4ab5ced1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-    like: false,
-  },
-  {
-    name: 'Дагестан',
-    link: 'https://images.unsplash.com/photo-1627327660729-a48ba87c4bb5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
-    like: false,
-  },
-  {
-    name: 'Калининград',
-    link: 'https://images.unsplash.com/photo-1679262353529-e85c6ef78a8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-    like: false,
-  },
-  {
-    name: 'Карелия',
-    link: 'https://images.unsplash.com/photo-1575582293156-7d185b60c7bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-    like: false,
-  },
-  {
-    name: 'Санкт-Петербург',
-    link: 'https://images.unsplash.com/photo-1597533849860-5a04a21a7b3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-    like: false,
-  },
-  {
-    name: 'Великий Устюг',
-    link: 'https://images.unsplash.com/photo-1608478870699-0c4809cccd25?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=943&q=80',
-    like: false,
-  }
-];
+buttonItemPopupClose.addEventListener('click', closeItemPopup);
 
+buttonItemPopupSave.addEventListener('click', handleItemAdd);
 
 
 function displayElements(cards) {
   const elementsContainer = document.getElementById('elements__container');
+  elementsContainer.innerHTML = "";
   cards.forEach(element => {
     const card = document.createElement('div');
-    card.className = 'elements__item';    
+    card.className = 'elements__item';
 
     const content = `<button type="button" class="elements__delete" aria-label="Delete"></button>
-    <img class="elements__image" src="${element.link}" alt="Фото Байкал">
+    <img class="elements__image" src="${element.link}" alt="${element.alt}">
     <div class="elements__info">
         <h2 class="elements__description">${element.name}</h2>
         <div class="elements__like-area">
@@ -92,13 +144,19 @@ function displayElements(cards) {
     </div>`;
     card.innerHTML = content;
     elementsContainer.appendChild(card);
+
+    //4. Лайк карточки - работает только на ПЕРВОЙ карточке
+    const likeItem = card.querySelector('.elements__like');
+    console.log(likeItem);
+    likeItem.addEventListener('click', () => {
+      likeItem.classList.add('elements__like_active');
+
+    
   });
     console.log(elementsContainer);
 
-//4. Лайк карточки - работает только на ПЕРВОЙ карточке
-const likeItem = document.querySelectorAll('.elements__like');
-likeItem.addEventListener('click', () => {
-likeItem.classList.add('elements__like_active');
+
+
 });
   };
   displayElements(initialCards);

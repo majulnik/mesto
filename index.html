@@ -25,7 +25,7 @@
                     <p class="profile__description">Тот еще путешественник</p>
                 </div>
             </div>            
-            <button class="profile__button profile__button_type_add" type="button" title="Добавить фотографию" aria-label="Добавить фотографию"></button>
+            <button id ='openItemPopup' class="profile__button profile__button_type_add" type="button" title="Добавить фотографию" aria-label="Добавить фотографию"></button>
         </section>
 
         <section class="elements" id="elements__container">            
@@ -36,7 +36,7 @@
         <p class="footer__copyright">&copy;2023 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup" id="profile_popup">
         <div class="popup__container popup__container_type_profile">            
               <h2 class="popup__title">Редактировать профиль</h2>
               <button class="popup__close" type="button"></button>             
@@ -49,22 +49,22 @@
     </div>   
     
 
-    <!-- <div class="popup">
+    <div class="popup" id="item_popup">
         <div class="popup__container popup__container_type_item">            
               <h2 class="popup__title">Новое место</h2>
-              <button class="popup__close" type="button"></button>             
+              <button id="closeItemPopup" class="popup__close" type="button"></button>             
               <form id="form" name="NewPlace">
                 <input class="popup__input" type="text" placeholder="Название" id="new-place" name="new-place" minlength="2" maxlength="25">
-                <input class="popup__input" type="text" placeholder="Ссылка на картинку" id="new-link" name="new-link" minlength="2" maxlength="35">
+                <input class="popup__input" type="text" placeholder="Ссылка на картинку" id="new-link" name="new-link" minlength="2" maxlength="1000">
               </form>
-            <button class="popup__save" type="submit" title="Сохранить изменения" form="form">Сохранить</button>
+            <button id="saveItem" class="popup__save" type="submit" title="Сохранить изменения" form="form">Сохранить</button>
         </div>
-    </div>    -->
+    </div>   
 
         <!-- <div class="popup">
             <figure class="popup__image">
-                <img src="https://picsum.photos/600/300" alt="Random Image">
-                <figcaption class="popup__image-name">Random Image</figcaption>
+                <img src="${element.link}" alt="${element.alt}">
+                <figcaption class="popup__image-name">${element.name}</figcaption>
             </figure>            
             <button class="popup__close" type="button"></button> 
     </div>    -->
