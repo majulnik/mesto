@@ -61,13 +61,13 @@
         </div>
     </div>   
 
-        <!-- <div class="popup">
-            <figure class="popup__image">
-                <img src="${element.link}" alt="${element.alt}">
-                <figcaption class="popup__image-name">${element.name}</figcaption>
-            </figure>            
-            <button class="popup__close" type="button"></button> 
-    </div>    -->
+    <div class="popup" id="image_popup">
+        <figure class="popup__image">
+            <img id="popupImageSrc" src="https://images.unsplash.com/photo-1652167934538-c0b4ab5ced1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="${element.alt}">
+            <figcaption id="popupImageName" class="popup__image-name">Название</figcaption>
+            <button class="popup__close" id="closeImagePopup" type="button"></button> 
+        </figure>            
+    </div>   
 
     <script src="./scripts/index.js"></script>
 </body>

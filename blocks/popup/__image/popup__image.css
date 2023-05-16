@@ -3,3 +3,7 @@
     max-width: 75vw;
     max-height: 75vh;
 }
+
+.popup__image img {
+    max-height: 60vh;
+}

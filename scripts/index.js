@@ -53,12 +53,20 @@ const profileDescriptionElement = document.querySelector('.profile__description'
 const ButtonPopupOpen = document.querySelector('.profile__button_type_edit');
 const popup = document.getElementById('profile_popup');
 const popupItem = document.getElementById('item_popup');
+const popupImage = document.getElementById('image_popup');
 
 const buttonPopupClose = popup.querySelector('.popup__close');
 
 const buttonItemPopupClose = document.getElementById('closeItemPopup');
 const buttonItemPopupOpen = document.getElementById('openItemPopup');
 const buttonItemPopupSave = document.getElementById('saveItem');
+
+const closeImagePopup = document.getElementById('closeImagePopup');
+
+
+const popupImageName = document.getElementById('popupImageName');
+const popupImageSrc = document.getElementById('popupImageSrc');
+
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -126,6 +134,12 @@ buttonItemPopupClose.addEventListener('click', closeItemPopup);
 
 buttonItemPopupSave.addEventListener('click', handleItemAdd);
 
+// Закрыти поопапа с картинкой
+
+closeImagePopup.addEventListener('click', () => {
+  popupImage.classList.remove('popup_opened');
+});
+
 
 function displayElements(cards) {
   const elementsContainer = document.getElementById('elements__container');
@@ -145,15 +159,26 @@ function displayElements(cards) {
     card.innerHTML = content;
     elementsContainer.appendChild(card);
 
-    //4. Лайк карточки - работает только на ПЕРВОЙ карточке
+    //4. Лайк карточки
     const likeItem = card.querySelector('.elements__like');
-    console.log(likeItem);
     likeItem.addEventListener('click', () => {
       likeItem.classList.add('elements__like_active');
+    });
 
-    
-  });
-    console.log(elementsContainer);
+    // Удаление карточки
+    const delteItem = card.querySelector('.elements__delete');
+    delteItem.addEventListener('click', () => {
+      card.outerHTML = '';
+    });
+
+    // открытие попапа с картинкой
+    const imageItem = card.querySelector('.elements__image');
+    imageItem.addEventListener('click', () => {
+      popupImage.classList.add('popup_opened');
+      popupImageSrc.src = element.link;
+      popupImageSrc.alt = element.alt;
+      popupImageName.innerText = element.name;
+    });
 
 
 
