@@ -36,7 +36,7 @@
         <p class="footer__copyright">&copy;2023 Mesto Russia</p>
     </footer>
 
-    <div class="popup" id="profile_popup">
+    <div class="popup popup_theme_light" id="profile_popup">
         <div class="popup__container popup__container_type_profile">            
               <h2 class="popup__title">Редактировать профиль</h2>
               <button class="popup__close" type="button"></button>             
@@ -46,29 +46,28 @@
               </form>
             <button class="popup__save" type="submit" title="Сохранить изменения" form="form">Сохранить</button>
         </div>
-    </div>   
-    
+    </div>    
 
-    <div class="popup" id="item_popup">
+    <div class="popup popup_theme_light" id="item_popup">
         <div class="popup__container popup__container_type_item">            
               <h2 class="popup__title">Новое место</h2>
               <button id="closeItemPopup" class="popup__close" type="button"></button>             
               <form id="form" name="NewPlace">
                 <input class="popup__input" type="text" placeholder="Название" id="new-place" name="new-place" minlength="2" maxlength="25">
-                <input class="popup__input" type="text" placeholder="Ссылка на картинку" id="new-link" name="new-link" minlength="2" maxlength="1000">
+                <input class="popup__input" type="text" placeholder="Ссылка на картинку" id="new-link" name="new-link" minlength="2" maxlength="70">
               </form>
             <button id="saveItem" class="popup__save" type="submit" title="Сохранить изменения" form="form">Сохранить</button>
         </div>
-    </div>   
+    </div>
 
-        <!-- <div class="popup">
-            <figure class="popup__image">
-                <img src="${element.link}" alt="${element.alt}">
-                <figcaption class="popup__image-name">${element.name}</figcaption>
-            </figure>            
+    <div class="popup popup_theme_dark" id="gallery_popup">
+        <figure class="popup__image-gallery">
+            <img class="popup__image" src="${element.link}" alt="${element.alt}">
+            <figcaption class="popup__image-name">${element.name}</figcaption>
             <button class="popup__close" type="button"></button> 
-    </div>    -->
-
+        </figure>
+    </div>
+    
     <script src="./scripts/index.js"></script>
 </body>
 </html>
