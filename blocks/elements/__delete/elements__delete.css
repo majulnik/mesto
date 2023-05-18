@@ -9,6 +9,7 @@
     background-color: transparent;
     background-repeat: no-repeat;
     background-image: url(../../../images/delete.svg);
+    z-index: 5;
 }
 
 .elements__delete:hover {
