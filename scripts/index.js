@@ -6,25 +6,27 @@ const jobInput = formElement.querySelector('#profile-description');
 const placeInput = document.querySelector('#new-place');
 const linkInput = document.querySelector('#new-link');
 
-const placeForm = document.getElementById('placeForm');
+const placeForm = document.querySelector('#placeForm');
 
 const profileNameElement = document.querySelector('.profile__name');
 const profileDescriptionElement = document.querySelector('.profile__description');
 
 const buttonPopupOpen = document.querySelector('.profile__button_type_edit');
-const popup = document.getElementById('profile_popup');
-const popupItem = document.getElementById('item_popup');
+const profileEditPopup = document.querySelector('#profile_popup');
+const popupAddPLace= document.querySelector('#item_popup');
 
-const buttonPopupClose = popup.querySelector('.popup__close');
+const buttonPopupClose = profileEditPopup.querySelector('.popup__close');
 
-const buttonItemPopupClose = document.getElementById('closeItemPopup');
-const buttonItemPopupOpen = document.getElementById('openItemPopup');
+const buttonItemPopupClose = document.querySelector('#closeItemPopup');
+const buttonItemPopupOpen = document.querySelector('#openItemPopup');
 
-const closeImagePopup = document.getElementById('closeImagePopup');
-const popupImageName = document.getElementById('popupImageName');
-const popupImageSrc = document.getElementById('popupImageSrc');
+const closeImagePopup = document.querySelector('#closeImagePopup');
+const popupImageName = document.querySelector('#popupImageName');
+const popupImageSrc = document.querySelector('#popupImageSrc');
 
-const popupImage = document.getElementById('image_popup');
+const popupImage = document.querySelector('#image_popup');
+
+const elementsContainer = document.querySelector('#elements__container');
 
 // Добавление информации о пользователе на страницу через попап
 function handleFormSubmit(evt) {
@@ -39,7 +41,7 @@ function handleFormSubmit(evt) {
   closePopup();
 }
 
-// 3. Добавление карточки - Добавление элемента в начало массива: метод unshift
+// Добавление карточки - Добавление элемента в начало массива: метод unshift
 function handleItemAdd(evt) {
   evt.preventDefault();
   closeItemPopup();
@@ -54,34 +56,39 @@ function handleItemAdd(evt) {
     alt: '',
     like: false,
   };
-  initialCards.unshift(newItem);
-  displayElements(initialCards);
+  displayAddCard(newItem);
 }
 
+function openModal (popup) {
+  popup.classList.add('popup_opened');
+}
 
+function closeModal (popup) {
+  popup.classList.remove('popup_opened');
+}
 
 function openPopup() {
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileDescriptionElement.textContent;
-  popup.classList.add('popup_opened');
+  openModal(profileEditPopup);
 }
 
 function closePopup() {
-  popup.classList.remove('popup_opened');
+  closeModal(profileEditPopup);
 }
 
 function openItemPopup() {
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileDescriptionElement.textContent;
-  popupItem.classList.add('popup_opened');
+  openModal(popupAddPLace);
 }
 
 function closeItemPopup() {
-  popupItem.classList.remove('popup_opened');
+  closeModal(popupAddPLace);
 }
 
 closeImagePopup.addEventListener('click', () => {
-  popupImage.classList.remove('popup_opened');
+  closeModal(popupImage);
 });
 
 buttonPopupOpen.addEventListener('click', openPopup);
@@ -90,7 +97,7 @@ buttonPopupClose.addEventListener('click', closePopup);
 
 formElement.addEventListener('submit', handleFormSubmit);
 
-// 2. Форма добавления карточки - открытие нажатием на кнопку «+» и закрытие кликом на крестик
+// Форма добавления карточки - открытие нажатием на кнопку «+» и закрытие кликом на крестик
 buttonItemPopupOpen.addEventListener('click', openItemPopup);
 
 buttonItemPopupClose.addEventListener('click', closeItemPopup);
@@ -103,15 +110,11 @@ function getCardElement (cardContent) {
   const card = document.createElement('div');
   card.className = 'elements__item';
 
-  const content = `<button type="button" class="elements__delete" aria-label="Delete"></button>
-  <img class="elements__image" src="${cardContent.link}" alt="${cardContent.alt}">
-  <div class="elements__info">
-      <h2 class="elements__description">${cardContent.name}</h2>
-      <div class="elements__like-area">
-          <button type="button" class="elements__like ${cardContent.like ? 'elements__like_active' : ""}" aria-label="Like"></button>
-      </div>
-  </div>`;
+  const content = 
+
+  
   card.innerHTML = content;
+  addCardListener(card, cardContent);
   return card;
 }
 
@@ -119,19 +122,19 @@ function addCardListener(card, cardContent) {
       // 4. Лайк карточки
       const likeItem = card.querySelector('.elements__like');
       likeItem.addEventListener('click', () => {
-        likeItem.classList.add('elements__like_active');
+        likeItem.classList.toggle('elements__like_active');
       });
   
       // Удаление карточки
       const deleteItem = card.querySelector('.elements__delete');
       deleteItem.addEventListener('click', () => {
-        card.outerHTML = '';
+        card.remove();
       });
   
       // Открытие попапа с картинкой
       const imageItem = card.querySelector('.elements__image');
       imageItem.addEventListener('click', () => {
-        popupImage.classList.add('popup_opened');
+        openModal(popupImage);
         popupImageSrc.src = cardContent.link;
         popupImageSrc.alt = cardContent.alt;
         popupImageName.innerText = cardContent.name;
@@ -139,14 +142,15 @@ function addCardListener(card, cardContent) {
 }
 
 function displayElements(cards) {
-  const elementsContainer = document.getElementById('elements__container');
-  elementsContainer.innerHTML = "";
-  cards.forEach(element => {
-    const card = getCardElement(element);
-    elementsContainer.appendChild(card);
 
-    addCardListener(card, element);    
-  });
+  for (let i = cards.length - 1; i >= 0; i--) { 
+    displayAddCard(cards[i]);  
+  }
 };
+
+function displayAddCard(cardData) {
+  const cardElement = getCardElement(cardData);
+  elementsContainer.prepend(cardElement);
+}
 
 displayElements(initialCards);
