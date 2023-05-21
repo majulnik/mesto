@@ -28,6 +28,12 @@ const popupImage = document.querySelector('#image_popup');
 
 const elementsContainer = document.querySelector('#elements__container');
 
+// Переменные для манипуляции с шаблоном карточки
+const elementsTemplate = document.querySelector('#elements__template').content.querySelector('.elements__item');
+const elementsTemplateImage = elementsTemplate.querySelector('img');
+const elementsTemplateDescription = elementsTemplate.querySelector('.elements__description');
+const elementsTemplateLike = elementsTemplate.querySelector('.elements__like');
+
 // Добавление информации о пользователе на страницу через попап
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -107,13 +113,13 @@ placeForm.addEventListener('submit', handleItemAdd);
 //placeForm.onsubmit = handleItemAdd;
 
 function getCardElement (cardContent) {
-  const card = document.createElement('div');
-  card.className = 'elements__item';
+  elementsTemplateImage.src = cardContent.link;
+  elementsTemplateImage.alt = cardContent.alt;
+  elementsTemplateDescription.textContent = cardContent.name;
+  if (cardContent.like)
+    elementsTemplateLike.classList.add("elements__like_active");
 
-  const content = 
-
-  
-  card.innerHTML = content;
+  const card = elementsTemplate.cloneNode(true);
   addCardListener(card, cardContent);
   return card;
 }

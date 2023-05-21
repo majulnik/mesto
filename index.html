@@ -18,28 +18,32 @@
     <main>
         <section class="profile">
             <div class="profile__info">
-                <img class="profile__avatar" src="./images/avatar-image.jpg" alt="Аватар профиля">                  
+                <img class="profile__avatar" src="./images/avatar-image.jpg" alt="Аватар профиля">
                 <div class="profile__intro">
                     <h1 class="profile__name">Юлия Матросова</h1>
-                    <button class="profile__button profile__button_type_edit" type="button" title="Редактировать профиль" aria-label="Редактировать профиль"></button>     
+                    <button class="profile__button profile__button_type_edit" type="button"
+                        title="Редактировать профиль" aria-label="Редактировать профиль"></button>
                     <p class="profile__description">Тот еще путешественник</p>
                 </div>
-            </div>            
-            <button id ='openItemPopup' class="profile__button profile__button_type_add" type="button" title="Добавить фотографию" aria-label="Добавить фотографию"></button>
+            </div>
+            <button id='openItemPopup' class="profile__button profile__button_type_add" type="button"
+                title="Добавить фотографию" aria-label="Добавить фотографию"></button>
         </section>
 
-        <template id="element">
-            <section class="elements" id="elements__container">
-                <button type="button" class="elements__delete" aria-label="Delete"></button>
-                <img class="elements__image" src="#" alt="#">
-                <div class="elements__info">
-                    <h2 class="elements__description"></h2>
-                    <div class="elements__like-area">
-                <button type="button" class="elements__like" aria-label="Like"></button>
+        <section class="elements" id="elements__container">
+            <template id="elements__template">
+                <div class="elements__item">
+                    <button type="button" class="elements__delete" aria-label="Delete"></button>
+                    <img class="elements__image" src="#" alt="#">
+                    <div class="elements__info">
+                        <h2 class="elements__description"></h2>
+                        <div class="elements__like-area">
+                            <button type="button" class="elements__like" aria-label="Like"></button>
+                        </div>
                     </div>
-                </div>;
-            </section>
-        </template>
+                </div>
+            </template>
+        </section>
 
     </main>
 
@@ -48,26 +52,31 @@
     </footer>
 
     <div class="popup popup_theme_light" id="profile_popup">
-        <div class="popup__container popup__container_type_profile">            
-              <h2 class="popup__title">Редактировать профиль</h2>
-              <button class="popup__close" type="button"></button>             
-              <form id="form" name="UserProfile">
-                <input class="popup__input" type="text" placeholder="Имя" id="profile-name" name="profile-name" minlength="2" maxlength="25">
-                <input class="popup__input" type="text" placeholder="О себе" id="profile-description" name="profile-description" minlength="2" maxlength="35">
-              </form>
+        <div class="popup__container popup__container_type_profile">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <button class="popup__close" type="button"></button>
+            <form id="form" name="UserProfile">
+                <input class="popup__input" type="text" placeholder="Имя" id="profile-name" name="profile-name"
+                    minlength="2" maxlength="25">
+                <input class="popup__input" type="text" placeholder="О себе" id="profile-description"
+                    name="profile-description" minlength="2" maxlength="35">
+            </form>
             <button class="popup__save" type="submit" title="Сохранить изменения" form="form">Сохранить</button>
         </div>
-    </div>    
+    </div>
 
     <div class="popup popup_theme_light" id="item_popup">
-        <div class="popup__container popup__container_type_item">            
-              <h2 class="popup__title">Новое место</h2>
-              <button id="closeItemPopup" class="popup__close" type="button"></button>             
-              <form id="placeForm" name="NewPlace">
-                <input class="popup__input" type="text" placeholder="Название" id="new-place" name="new-place" minlength="2" maxlength="25">
-                <input class="popup__input" type="text" placeholder="Ссылка на картинку" id="new-link" name="new-link" minlength="2" maxlength="100">
-                <button id="saveItem" class="popup__save" type="submit" title="Сохранить изменения" form="placeForm">Сохранить</button>
-            </form>            
+        <div class="popup__container popup__container_type_item">
+            <h2 class="popup__title">Новое место</h2>
+            <button id="closeItemPopup" class="popup__close" type="button"></button>
+            <form id="placeForm" name="NewPlace">
+                <input class="popup__input" type="text" placeholder="Название" id="new-place" name="new-place"
+                    minlength="2" maxlength="25">
+                <input class="popup__input" type="text" placeholder="Ссылка на картинку" id="new-link" name="new-link"
+                    minlength="2" maxlength="100">
+                <button id="saveItem" class="popup__save" type="submit" title="Сохранить изменения"
+                    form="placeForm">Сохранить</button>
+            </form>
         </div>
     </div>
 
@@ -75,12 +84,13 @@
         <figure class="popup__image-gallery">
             <img class="popup__image" id="popupImageSrc">
             <figcaption id="popupImageName" class="popup__image-name">Название</figcaption>
-            <button class="popup__close" id="closeImagePopup" type="button"></button> 
-        </figure>            
+            <button class="popup__close" id="closeImagePopup" type="button"></button>
+        </figure>
     </div>
 
     <script src="./scripts/dataStructure.js"></script>
     <script src="./scripts/index.js"></script>
 
 </body>
+
 </html>
