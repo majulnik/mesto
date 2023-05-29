@@ -16,6 +16,14 @@
     opacity: 0.8;
 }
 
+.popup__save:disabled {
+    border: 1px solid #000;
+    border-radius: 2px;
+    color: #000;
+    background-color: transparent;
+    opacity: 0.2;
+}
+
 @media screen and (max-width: 767px) {
     .popup__save {
         margin: 43px 22px 25px;

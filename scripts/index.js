@@ -28,15 +28,53 @@ const popupImage = document.querySelector('#image_popup');
 
 const elementsContainer = document.querySelector('#elements__container');
 
+const saveItem = document.querySelector('#saveItem');
+const saveProfile = document.querySelector('#saveProfile');
+
+const profileInputs = [nameInput, jobInput];
+profileInputs.forEach(field => {field.oninput = function(evt){
+  isFormValid(profileInputs, saveProfile)
+}
+});
+
+const itemAddInputs = [placeInput, linkInput];
+itemAddInputs.forEach(field => {field.oninput = function(evt){
+  isFormValid(itemAddInputs, saveItem)
+}
+});
+
+linkInput.setCustomValidity('Введите адрес сайта.');
+
 // Переменные для манипуляции с шаблоном карточки
 const elementsTemplate = document.querySelector('#elements__template').content.querySelector('.elements__item');
 const elementsTemplateImage = elementsTemplate.querySelector('img');
 const elementsTemplateDescription = elementsTemplate.querySelector('.elements__description');
 const elementsTemplateLike = elementsTemplate.querySelector('.elements__like');
 
+// Функция валидации переданных полей формы
+function isFormValid (fields, button) {
+  console.log(button)
+  let flag = true;
+  fields.forEach(field => {
+    let msg = document.querySelector('#'+field.id+'-error');
+    if (!field.validity.valid) {
+      msg.innerText = field.validationMessage;
+      flag = false;
+    }
+    else {msg.innerText = '';}
+  })
+  button.disabled =!flag;
+  return flag;
+}
+
 // Добавление информации о пользователе на страницу через попап
 function handleFormSubmit(evt) {
   evt.preventDefault();
+  console.log();
+  //console.log(validateFormFields([nameInput, jobInput]))
+  if (!isFormValid([nameInput, jobInput], saveProfile)) {
+    return false;
+  }
 
   const nameValue = nameInput.value;
   const descriptionValue = jobInput.value;
@@ -50,7 +88,11 @@ function handleFormSubmit(evt) {
 // Добавление карточки - Добавление элемента в начало массива: метод unshift
 function handleItemAdd(evt) {
   evt.preventDefault();
+  if (!isFormValid([placeInput, linkInput], saveItem)) {
+    return false;
+  }
   closeItemPopup();
+  
 
   const itemValue = placeInput.value;
   const linkValue = linkInput.value;
@@ -110,8 +152,6 @@ buttonItemPopupClose.addEventListener('click', closeItemPopup);
 
 placeForm.addEventListener('submit', handleItemAdd);
 
-//placeForm.onsubmit = handleItemAdd;
-
 function getCardElement (cardContent) {
   elementsTemplateImage.src = cardContent.link;
   elementsTemplateImage.alt = cardContent.alt;
@@ -160,3 +200,9 @@ function displayAddCard(cardData) {
 }
 
 displayElements(initialCards);
+
+document.addEventListener('keydown', function (evt) {
+  if (evt.key=='Escape') {
+    document.querySelector('.popup_opened').classList.remove('popup_opened')
+  }
+})

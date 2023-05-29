@@ -55,13 +55,15 @@
         <div class="popup__container popup__container_type_profile">
             <h2 class="popup__title">Редактировать профиль</h2>
             <button class="popup__close" type="button"></button>
-            <form id="form" name="UserProfile">
+            <form id="form" name="UserProfile" novalidate>
                 <input class="popup__input" type="text" placeholder="Имя" id="profile-name" name="profile-name"
-                    minlength="2" maxlength="25">
+                    minlength="2" maxlength="40" required>
+                    <span class="popup__input-error" id="profile-name-error"></span>
                 <input class="popup__input" type="text" placeholder="О себе" id="profile-description"
-                    name="profile-description" minlength="2" maxlength="35">
-            </form>
-            <button class="popup__save" type="submit" title="Сохранить изменения" form="form">Сохранить</button>
+                    name="profile-description" minlength="2" maxlength="200" required>
+                    <span class="popup__input-error" id="profile-description-error"></span>
+            <button id="saveProfile" class="popup__save" type="submit" title="Сохранить изменения" form="form">Сохранить</button>
+            </form>            
         </div>
     </div>
 
@@ -69,11 +71,12 @@
         <div class="popup__container popup__container_type_item">
             <h2 class="popup__title">Новое место</h2>
             <button id="closeItemPopup" class="popup__close" type="button"></button>
-            <form id="placeForm" name="NewPlace">
+            <form id="placeForm" name="NewPlace" novalidate>
                 <input class="popup__input" type="text" placeholder="Название" id="new-place" name="new-place"
-                    minlength="2" maxlength="25">
-                <input class="popup__input" type="text" placeholder="Ссылка на картинку" id="new-link" name="new-link"
-                    minlength="2" maxlength="100">
+                    minlength="1" maxlength="30" required>
+                <span class="popup__input-error" id="new-place-error"></span>
+                <input class="popup__input" type="text" placeholder="Ссылка на картинку" id="new-link" name="new-link" pattern=".">
+                <span class="popup__input-error" id="new-link-error" required></span>
                 <button id="saveItem" class="popup__save" type="submit" title="Сохранить изменения"
                     form="placeForm">Сохранить</button>
             </form>
