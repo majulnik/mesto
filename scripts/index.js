@@ -1,7 +1,7 @@
-const formElement = document.querySelector('.popup__container_type_profile');
+const profileForm = document.querySelector('.popup__container_type_profile');
 
-const nameInput = formElement.querySelector('#profile-name');
-const jobInput = formElement.querySelector('#profile-description');
+const nameInput = profileForm.querySelector('#profile-name');
+const jobInput = profileForm.querySelector('#profile-description');
 
 const placeInput = document.querySelector('#new-place');
 const linkInput = document.querySelector('#new-link');
@@ -11,11 +11,11 @@ const placeForm = document.querySelector('#placeForm');
 const profileNameElement = document.querySelector('.profile__name');
 const profileDescriptionElement = document.querySelector('.profile__description');
 
-const buttonPopupOpen = document.querySelector('.profile__button_type_edit');
+const buttonProfilePopupOpen = document.querySelector('.profile__button_type_edit');
 const profileEditPopup = document.querySelector('#profile_popup');
 const popupAddPLace= document.querySelector('#item_popup');
 
-const buttonPopupClose = profileEditPopup.querySelector('.popup__close');
+const buttonProfilePopupClose = profileEditPopup.querySelector('.popup__close');
 
 const buttonItemPopupClose = document.querySelector('#closeItemPopup');
 const buttonItemPopupOpen = document.querySelector('#openItemPopup');
@@ -50,7 +50,7 @@ function handleFormSubmit(evt) {
   profileNameElement.textContent = nameValue;
   profileDescriptionElement.textContent = descriptionValue;
 
-  closePopup();
+  closeProfilePopup();
 }
 
 // Добавление карточки - Добавление элемента в начало массива: метод unshift
@@ -83,13 +83,13 @@ function closeModal (popup) {
   popup.classList.remove('popup_opened');
 }
 
-function openPopup() {
+function openProfilePopup() {
   nameInput.value = profileNameElement.textContent;
   jobInput.value = profileDescriptionElement.textContent;
   openModal(profileEditPopup);
 }
 
-function closePopup() {
+function closeProfilePopup() {
   closeModal(profileEditPopup);
 }
 
@@ -107,11 +107,11 @@ closeImagePopup.addEventListener('click', () => {
   closeModal(popupImage);
 });
 
-buttonPopupOpen.addEventListener('click', openPopup);
+buttonProfilePopupOpen.addEventListener('click', openProfilePopup);
 
-buttonPopupClose.addEventListener('click', closePopup);
+buttonProfilePopupClose.addEventListener('click', closeProfilePopup);
 
-formElement.addEventListener('submit', handleFormSubmit);
+profileForm.addEventListener('submit', handleFormSubmit);
 
 // Форма добавления карточки - открытие нажатием на кнопку «+» и закрытие кликом на крестик
 buttonItemPopupOpen.addEventListener('click', openItemPopup);
