@@ -32,18 +32,6 @@ const saveItem = document.querySelector('#saveItem');
 const saveProfile = document.querySelector('#saveProfile');
 
 const profileInputs = [nameInput, jobInput];
-// profileInputs.forEach(field => {field.oninput = function(evt){
-//   isFormValid(profileInputs, saveProfile)
-// }
-// });
-
-// const itemAddInputs = [placeInput, linkInput];
-// itemAddInputs.forEach(field => {field.oninput = function(evt){
-//   isFormValid(itemAddInputs, saveItem)
-// }
-// });
-
-// linkInput.setCustomValidity('Введите адрес сайта.');
 
 // Переменные для манипуляции с шаблоном карточки
 const elementsTemplate = document.querySelector('#elements__template').content.querySelector('.elements__item');
@@ -51,31 +39,11 @@ const elementsTemplateImage = elementsTemplate.querySelector('img');
 const elementsTemplateDescription = elementsTemplate.querySelector('.elements__description');
 const elementsTemplateLike = elementsTemplate.querySelector('.elements__like');
 
-// Функция валидации переданных полей формы
-// function isFormValid (fields, button) {
-//   console.log(button)
-//   let flag = true;
-//   fields.forEach(field => {
-//     let msg = document.querySelector('#'+field.id+'-error');
-//     if (!field.validity.valid) {
-//       msg.innerText = field.validationMessage;
-//       flag = false;
-//     }
-//     else {msg.innerText = '';}
-//   })
-//   button.disabled =!flag;
-//   return flag;
-// }
-
 // Добавление информации о пользователе на страницу через попап
 function handleFormSubmit(evt) {
   evt.preventDefault();
   console.log();
-
-  // if (!isFormValid([nameInput, jobInput], saveProfile)) {
-  //   return false;
-  // }
-
+  
   const nameValue = nameInput.value;
   const descriptionValue = jobInput.value;
 
@@ -213,5 +181,4 @@ popups.forEach((popup) => {popup.onclick = (evt) => {
     closeModal(popup);
   }  
 }
-
 });

@@ -62,7 +62,6 @@ function enableValidation(params) {
     })  
 }
 
-
 enableValidation({
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -71,4 +70,3 @@ enableValidation({
     inputErrorClass: 'popup__input_error',
     errorClass: 'popup__error_visible',
 })
-
