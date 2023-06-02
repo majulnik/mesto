@@ -32,18 +32,18 @@ const saveItem = document.querySelector('#saveItem');
 const saveProfile = document.querySelector('#saveProfile');
 
 const profileInputs = [nameInput, jobInput];
-profileInputs.forEach(field => {field.oninput = function(evt){
-  isFormValid(profileInputs, saveProfile)
-}
-});
+// profileInputs.forEach(field => {field.oninput = function(evt){
+//   isFormValid(profileInputs, saveProfile)
+// }
+// });
 
-const itemAddInputs = [placeInput, linkInput];
-itemAddInputs.forEach(field => {field.oninput = function(evt){
-  isFormValid(itemAddInputs, saveItem)
-}
-});
+// const itemAddInputs = [placeInput, linkInput];
+// itemAddInputs.forEach(field => {field.oninput = function(evt){
+//   isFormValid(itemAddInputs, saveItem)
+// }
+// });
 
-linkInput.setCustomValidity('Введите адрес сайта.');
+// linkInput.setCustomValidity('Введите адрес сайта.');
 
 // Переменные для манипуляции с шаблоном карточки
 const elementsTemplate = document.querySelector('#elements__template').content.querySelector('.elements__item');
@@ -52,29 +52,29 @@ const elementsTemplateDescription = elementsTemplate.querySelector('.elements__d
 const elementsTemplateLike = elementsTemplate.querySelector('.elements__like');
 
 // Функция валидации переданных полей формы
-function isFormValid (fields, button) {
-  console.log(button)
-  let flag = true;
-  fields.forEach(field => {
-    let msg = document.querySelector('#'+field.id+'-error');
-    if (!field.validity.valid) {
-      msg.innerText = field.validationMessage;
-      flag = false;
-    }
-    else {msg.innerText = '';}
-  })
-  button.disabled =!flag;
-  return flag;
-}
+// function isFormValid (fields, button) {
+//   console.log(button)
+//   let flag = true;
+//   fields.forEach(field => {
+//     let msg = document.querySelector('#'+field.id+'-error');
+//     if (!field.validity.valid) {
+//       msg.innerText = field.validationMessage;
+//       flag = false;
+//     }
+//     else {msg.innerText = '';}
+//   })
+//   button.disabled =!flag;
+//   return flag;
+// }
 
 // Добавление информации о пользователе на страницу через попап
 function handleFormSubmit(evt) {
   evt.preventDefault();
   console.log();
-  //console.log(validateFormFields([nameInput, jobInput]))
-  if (!isFormValid([nameInput, jobInput], saveProfile)) {
-    return false;
-  }
+
+  // if (!isFormValid([nameInput, jobInput], saveProfile)) {
+  //   return false;
+  // }
 
   const nameValue = nameInput.value;
   const descriptionValue = jobInput.value;
@@ -88,9 +88,9 @@ function handleFormSubmit(evt) {
 // Добавление карточки - Добавление элемента в начало массива: метод unshift
 function handleItemAdd(evt) {
   evt.preventDefault();
-  if (!isFormValid([placeInput, linkInput], saveItem)) {
-    return false;
-  }
+  // if (!isFormValid([placeInput, linkInput], saveItem)) {
+  //   return false;
+  // }
   closeItemPopup();
   
 
@@ -206,3 +206,12 @@ document.addEventListener('keydown', function (evt) {
     document.querySelector('.popup_opened').classList.remove('popup_opened')
   }
 })
+
+const popups = document.querySelectorAll('.popup');
+popups.forEach((popup) => {popup.onclick = (evt) => {
+  if(evt.target.classList.contains('popup')) {
+    closeModal(popup);
+  }  
+}
+
+});
