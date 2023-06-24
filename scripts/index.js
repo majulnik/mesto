@@ -1,5 +1,7 @@
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
+import { initialCards } from './constants.js'
+import { waitEscapeFunction, openModal, closeModal } from './utils.js'
 
 const profileForm = document.querySelector('.popup__container_type_profile');
 
@@ -38,50 +40,11 @@ const profileInputs = [nameInput, jobInput];
 
 const popups = document.querySelectorAll('.popup');
 
-// Шесть карточек «из коробки» - добавление фотографий через template
-const initialCards = [
-    {
-      name: 'Байкал',
-      link: 'https://images.unsplash.com/photo-1564324738343-a8aeafb375d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fCVEMCVCMCVEMCVCQiVEMSU4MiVEMCVCMCVEMCVCOXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60',
-      alt: 'Фото Байкал',
-      like: false,
-    },
-    {
-      name: 'Дагестан',
-      link: 'https://images.unsplash.com/photo-1643281237857-5f14c2b9f3ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8JUQwJUIwJUQwJUJCJUQxJTgyJUQwJUIwJUQwJUI5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60',
-      alt: 'Фото Дагестан',
-      like: false,
-    },
-    {
-      name: 'Калининград',
-      link: 'https://images.unsplash.com/photo-1679262353529-e85c6ef78a8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-      alt: 'Фото Калининград',
-      like: false,
-    },
-    {
-      name: 'Санкт-Петербург',
-      link: 'https://images.unsplash.com/photo-1597533849860-5a04a21a7b3b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
-      alt: 'Фото Санкт-Петербург',
-      like: false,
-    },
-    {
-      name: 'Карелия',
-      link: 'https://images.unsplash.com/photo-1575582293156-7d185b60c7bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-      alt: 'Фото Карелия',
-      like: false,
-    },
-    {
-      name: 'Великий Устюг',
-      link: 'https://images.unsplash.com/photo-1608478870699-0c4809cccd25?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=943&q=80',
-      alt: 'Фото Великий Устюг',
-      like: false,
-    }
-  ];
+
 
   // Добавление информации о пользователе на страницу через попап
-function handleFormSubmit(evt) {
+function submitEditProfileForm(evt) {
     evt.preventDefault();
-    console.log();
   
     const nameValue = nameInput.value;
     const descriptionValue = jobInput.value;
@@ -92,12 +55,7 @@ function handleFormSubmit(evt) {
     closeProfilePopup();
   }
   
-  function resetPopupForm(form) {
-    form.reset();
-    const button = form.querySelector('button');
-    button.classList.add('popup__button_disabled');
-    button.disabled = true;
-  }
+
   
   // Добавление карточки - Добавление элемента в начало массива: метод unshift
   function handleItemAdd(evt) {
@@ -107,10 +65,8 @@ function handleFormSubmit(evt) {
     // }
     closeItemPopup();
   
-  
     const itemValue = placeInput.value;
     const linkValue = linkInput.value;
-    resetPopupForm(evt.target);
   
     const newItem =
     {
@@ -122,22 +78,22 @@ function handleFormSubmit(evt) {
     displayAddCard(newItem);
   }
 
-  const waitEscapeFunction = function (evt) {
-    if (evt.key == 'Escape') {
-      const popup = document.querySelector('.popup_opened');
-      closeModal(popup);
-    }
-  }
+  // const waitEscapeFunction = function (evt) {
+  //   if (evt.key == 'Escape') {
+  //     const popup = document.querySelector('.popup_opened');
+  //     closeModal(popup);
+  //   }
+  // }
   
-  function openModal(popup) {
-    popup.classList.add('popup_opened');
-    document.addEventListener('keydown', waitEscapeFunction);
-  }
+  // function openModal(popup) {
+  //   popup.classList.add('popup_opened');
+  //   document.addEventListener('keydown', waitEscapeFunction);
+  // }
   
-  function closeModal(popup) {
-    popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', waitEscapeFunction);
-  }
+  // function closeModal(popup) {
+  //   popup.classList.remove('popup_opened');
+  //   document.removeEventListener('keydown', waitEscapeFunction);
+  // }
   
   function openProfilePopup() {
     nameInput.value = profileNameElement.textContent;
@@ -167,7 +123,7 @@ function handleFormSubmit(evt) {
   
   buttonProfilePopupClose.addEventListener('click', closeProfilePopup);
   
-  profileForm.addEventListener('submit', handleFormSubmit);
+  profileForm.addEventListener('submit', submitEditProfileForm);
   
   // Форма добавления карточки - открытие нажатием на кнопку «+» и закрытие кликом на крестик
   buttonItemPopupOpen.addEventListener('click', openItemPopup);

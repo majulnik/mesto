@@ -1,3 +1,9 @@
+import { waitEscapeFunction, openModal, closeModal } from './utils.js'
+
+const popupImageName = document.getElementById('popupImageName');
+const popupImageSrc = document.getElementById('popupImageSrc');
+const popupImage = document.querySelector('#image_popup');
+
 export class Card {
     _template = null;
     _element = null;
@@ -10,10 +16,7 @@ export class Card {
     getElement() {
         this._getTemplate()
         this._fillCardData()
-        this._addLikeListener()
-        this._addPopupListener()
-        this._addDeleteListener()
-
+        this._setEventListeners()
         return this._element;
     }
     
@@ -34,55 +37,32 @@ export class Card {
       
         this._element = this._template.cloneNode(true);
     }
+
+    _setEventListeners () {
+        
+        function addPopupListener () {
+            const imageItem = this._element.querySelector('.elements__image');
+            imageItem.addEventListener('click', () => {
+              openModal(popupImage);
+              popupImageSrc.src = this.data.link;
+              popupImageSrc.alt = this.data.alt;
+              popupImageName.innerText = this.data.name;
+            });    
+        }
     
-    _addPopupListener () {
-        const waitEscapeFunction = function (evt) {
-            if (evt.key == 'Escape') {
-              const popup = document.querySelector('.popup_opened');
-              closeModal(popup);
-            }
-          }
-          
-          function openModal(popup) {
-            popup.classList.add('popup_opened');
-            document.addEventListener('keydown', waitEscapeFunction);
-          }
-          
-          function closeModal(popup) {
-            popup.classList.remove('popup_opened');
-            document.removeEventListener('keydown', waitEscapeFunction);
-          }
-
-          const popupImageName = document.querySelector('#popupImageName');
-          const popupImageSrc = document.querySelector('#popupImageSrc');
-          
-          const popupImage = document.querySelector('#image_popup');
-
-        const imageItem = this._element.querySelector('.elements__image');
-        imageItem.addEventListener('click', () => {
-          openModal(popupImage);
-          popupImageSrc.src = this.data.link;
-          popupImageSrc.alt = this.data.alt;
-          popupImageName.innerText = this.data.name;
-        });
-
+        function addLikeListener () {
+            const likeItem = this._element.querySelector('.elements__like');
+            likeItem.addEventListener('click', () => {
+              likeItem.classList.toggle('elements__like_active');
+            });    
+        }
+    
+        function addDeleteListener () {
+            const deleteItem = this._element.querySelector('.elements__delete');
+            deleteItem.addEventListener('click', () => {
+                this._element.remove();
+            });
+        }        
+        
     }
-
-    _addLikeListener () {
-        const likeItem = this._element.querySelector('.elements__like');
-        likeItem.addEventListener('click', () => {
-          likeItem.classList.toggle('elements__like_active');
-        });
-
-    }
-
-    _addDeleteListener () {
-        const deleteItem = this._element.querySelector('.elements__delete');
-        deleteItem.addEventListener('click', () => {
-            this._element.remove();
-        });
-    }
-
-
 }
-

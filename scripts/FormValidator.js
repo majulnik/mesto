@@ -22,6 +22,13 @@ export class FormValidator {
             })
     }
 
+    disableSubmitButton(form) {
+        form.reset();
+        const button = form.querySelector('button');
+        button.classList.add('popup__button_disabled');
+        button.disabled = true;
+    }
+
     _hasInvalidInput(inputList) {
         return inputList.some((input) => {
             return !this._isInputValid(input)
