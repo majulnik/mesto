@@ -1,6 +1,6 @@
 import { Card } from './Card.js'
 import { FormValidator } from './FormValidator.js'
-import { initialCards } from './constants.js'
+import { initialCards, validationConfig } from './constants.js'
 import { waitEscapeFunction, openModal, closeModal } from './utils.js'
 
 const profileForm = document.querySelector('.popup__container_type_profile');
@@ -154,22 +154,10 @@ popups.forEach(popup => popup.addEventListener('click', (evt) => {
 
   displayElements(initialCards);
 
-  const profileFormValidator = new FormValidator({
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_error',
-    errorClass: 'popup__error_visible',
-}, '#form')
+  const profileFormValidator = new FormValidator(validationConfig, '#form')
 
 profileFormValidator.enableValidation();
 
-const placeFormValidator = new FormValidator({
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_error',
-    errorClass: 'popup__error_visible',
-}, '#placeForm')
+const placeFormValidator = new FormValidator(validationConfig, '#placeForm')
 
 placeFormValidator.enableValidation();
