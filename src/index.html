@@ -5,20 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto - cервис фотографий</title>
 </head>
 
 <body class="page">
 
     <header class="header">
-        <img class="header__logo" src="./images/header-logo.svg" alt="Логотип сервиса Mesto">
+        <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип сервиса Mesto">
     </header>
 
     <main>
         <section class="profile">
             <div class="profile__info">
-                <img class="profile__avatar" src="./images/avatar-image.jpg" alt="Аватар профиля">
+                <img class="profile__avatar" src="<%=require('./images/avatar-image.jpg')%>" alt="Аватар профиля">
                 <div class="profile__intro">
                     <h1 class="profile__name">Юлия Матросова</h1>
                     <button class="profile__button profile__button_type_edit" type="button"
@@ -89,10 +88,7 @@
             <figcaption id="popupImageName" class="popup__image-name">Название</figcaption>
             <button class="popup__close" id="closeImagePopup" type="button"></button>
         </figure>
-    </div>
-
-    <script type='module' src="scripts/index.js"></script>
-    
+    </div>    
 </body>
 
 </html>

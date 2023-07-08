@@ -1,16 +1,12 @@
-import { waitEscapeFunction, openModal, closeModal } from './utils.js'
-
-const popupImageName = document.getElementById('popupImageName');
-const popupImageSrc = document.getElementById('popupImageSrc');
-const popupImage = document.querySelector('#image_popup');
-
 export class Card {
     _template = null;
     _element = null;
+    _handleCardClick = null;
 
-    constructor(data, elementTemplate) {
+    constructor(data, elementTemplate, handleCardClick) {
         this.data = data;
         this.elementTemplate = elementTemplate;
+        this._handleCardClick = handleCardClick;
     }
 
     getElement() {
@@ -25,26 +21,23 @@ export class Card {
     }
 
     _fillCardData() {
-        const elementsTemplateImage = this._template.querySelector('img');
-        const elementsTemplateDescription = this._template.querySelector('.elements__description');
-        const elementsTemplateLike = this._template.querySelector('.elements__like');
+        this._element = this._template.cloneNode(true);
+        const elementsTemplateImage = this._element.querySelector('img');
+        const elementsTemplateDescription = this._element.querySelector('.elements__description');
+        const elementsTemplateLike = this._element.querySelector('.elements__like');
 
         elementsTemplateImage.src = this.data.link;
         elementsTemplateImage.alt = this.data.alt;
         elementsTemplateDescription.textContent = this.data.name;
-        if (this.data.like)
+        if (this.data.like) {
             elementsTemplateLike.classList.add("elements__like_active");
-
-        this._element = this._template.cloneNode(true);
+        }
     }
 
     _setEventListeners() {
         const imageItem = this._element.querySelector('.elements__image');
         imageItem.addEventListener('click', () => {
-            openModal(popupImage);
-            popupImageSrc.src = this.data.link;
-            popupImageSrc.alt = this.data.alt;
-            popupImageName.innerText = this.data.name;
+            this._handleCardClick();
         });
 
         const likeItem = this._element.querySelector('.elements__like');
@@ -56,6 +49,5 @@ export class Card {
         deleteItem.addEventListener('click', () => {
             this._element.remove();
         });
-
     }
 }
