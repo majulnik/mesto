@@ -1,11 +1,11 @@
-import { Card } from './Card.js'
-import { Section } from './Section.js'
-import { UserInfo } from './UserInfo.js'
-import { PopupWithForm } from './PopupWithForm.js'
-import { PopupWithImage } from './PopupWithImage.js'
-import { FormValidator } from './FormValidator.js'
-import { initialCards, validationConfig } from './constants.js'
-import '../pages/index.css';
+import { Card } from '../scripts/components/Card.js'
+import { Section } from '../scripts/components/Section.js'
+import { UserInfo } from '../scripts/components/UserInfo.js'
+import { PopupWithForm } from '../scripts/components/PopupWithForm.js'
+import { PopupWithImage } from '../scripts/components/PopupWithImage.js'
+import { FormValidator } from '../scripts/components/FormValidator.js'
+import { initialCards, validationConfig } from '../scripts/utils/constants.js'
+import './index.css';
 
 const profileForm = document.querySelector('.popup__container_type_profile');
 const nameInput = profileForm.querySelector('#profile-name');
@@ -30,11 +30,11 @@ const buttonItemPopupOpen = document.querySelector('#openItemPopup');
   // Форма добавления карточки - открытие нажатием на кнопку «+» и закрытие кликом на крестик
   buttonItemPopupOpen.addEventListener('click', openItemPopup);
   
-const profileFormValidator = new FormValidator(validationConfig, '#form')
+const profileFormValidator = new FormValidator(validationConfig, document.querySelector('#form'))
 
 profileFormValidator.enableValidation();
 
-const placeFormValidator = new FormValidator(validationConfig, '#placeForm')
+const placeFormValidator = new FormValidator(validationConfig, document.querySelector('#placeForm'))
 
 placeFormValidator.enableValidation();
 
@@ -67,7 +67,7 @@ const itemFormPopup = new PopupWithForm('#item_popup', function(data) {
   {
     name: data['new-place'],
     link: data['new-link'],
-    alt: '',
+    alt: data['new-place'],
     like: false,
   };
   cardSection.addItem(newItem);

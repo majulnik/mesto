@@ -32,12 +32,12 @@
         <section class="elements" id="elements__container">
             <template id="elements__template">
                 <div class="elements__item">
-                    <button type="button" class="elements__delete" aria-label="Delete"></button>
+                    <button type="button" class="elements__delete" aria-label="Удалить"></button>
                     <img class="elements__image" src="#" alt="#">
                     <div class="elements__info">
                         <h2 class="elements__description"></h2>
                         <div class="elements__like-area">
-                            <button type="button" class="elements__like" aria-label="Like"></button>
+                            <button type="button" class="elements__like" aria-label="Лайк"></button>
                         </div>
                     </div>
                 </div>
@@ -74,8 +74,8 @@
                 <input class="popup__input" type="text" placeholder="Название" id="new-place" name="new-place"
                     minlength="2" maxlength="30" required>
                 <span class="popup__error" id="new-place-error"></span>
-                <input class="popup__input" type="url" placeholder="Ссылка на картинку" id="new-link" name="new-link">
-                <span class="popup__error" id="new-link-error" required></span>
+                <input class="popup__input" type="url" placeholder="Ссылка на картинку" id="new-link" name="new-link" required>
+                <span class="popup__error" id="new-link-error"></span>
                 <button id="saveItem" class="popup__button" type="submit" title="Сохранить изменения"
                     form="placeForm">Создать</button>
             </form>

@@ -26,7 +26,8 @@ export class PopupWithForm extends Popup {
         const formData = {};
         inputs.forEach(function(input) {
             formData[input.name] = input.value;
-        }); return formData;
+        }); 
+        return formData;
     }
 
     close() {

@@ -4,7 +4,7 @@ export class Card {
     _handleCardClick = null;
 
     constructor(data, elementTemplate, handleCardClick) {
-        this.data = data;
+        this._data = data;
         this.elementTemplate = elementTemplate;
         this._handleCardClick = handleCardClick;
     }
@@ -22,32 +22,39 @@ export class Card {
 
     _fillCardData() {
         this._element = this._template.cloneNode(true);
-        const elementsTemplateImage = this._element.querySelector('img');
+        this._elementImage = this._element.querySelector('img');
         const elementsTemplateDescription = this._element.querySelector('.elements__description');
         const elementsTemplateLike = this._element.querySelector('.elements__like');
 
-        elementsTemplateImage.src = this.data.link;
-        elementsTemplateImage.alt = this.data.alt;
-        elementsTemplateDescription.textContent = this.data.name;
-        if (this.data.like) {
+        this._elementImage.src = this._data.link;
+        this._elementImage.alt = this._data.alt;
+        elementsTemplateDescription.textContent = this._data.name;
+        if (this._data.like) {
             elementsTemplateLike.classList.add("elements__like_active");
         }
     }
 
-    _setEventListeners() {
-        const imageItem = this._element.querySelector('.elements__image');
-        imageItem.addEventListener('click', () => {
+    _likeCard(evt) {
+        evt.target.classList.toggle('elements__like_active'); 
+    }
+
+    _deleteCard() {
+        this._element.remove();
+    }
+
+    _setEventListeners() {   
+        this._elementImage.addEventListener('click', () => {
             this._handleCardClick();
         });
 
         const likeItem = this._element.querySelector('.elements__like');
-        likeItem.addEventListener('click', () => {
-            likeItem.classList.toggle('elements__like_active');
+        likeItem.addEventListener('click', (evt) => {
+            this._likeCard(evt);
         });
 
         const deleteItem = this._element.querySelector('.elements__delete');
         deleteItem.addEventListener('click', () => {
-            this._element.remove();
+            this._deleteCard();
         });
     }
 }
