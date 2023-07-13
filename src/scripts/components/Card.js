@@ -44,7 +44,7 @@ export class Card {
 
     _setEventListeners() {   
         this._elementImage.addEventListener('click', () => {
-            this._handleCardClick();
+            this._handleCardClick(this._data);
         });
 
         const likeItem = this._element.querySelector('.elements__like');

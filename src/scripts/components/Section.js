@@ -14,16 +14,15 @@ export class Section {
 
     render() {
         this._itemsAndRenderer.items.forEach(element => {
-            this._renderItem(element);
+            this.renderItem(element);
         });
     }
 
-    addItem(item) {
-        this._renderItem(item)
-    }
-
-    _renderItem(item) {
-        const element = this._itemsAndRenderer.renderer(item)
+    addItem(element) {
         this._container.prepend(element);
+    }
+    renderItem(item) {
+        const element = this._itemsAndRenderer.renderer(item);
+        this.addItem(element)
     }
 }

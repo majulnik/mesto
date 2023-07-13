@@ -16,8 +16,9 @@ const buttonProfilePopupOpen = document.querySelector('.profile__button_type_edi
 const buttonItemPopupOpen = document.querySelector('#openItemPopup');
 
   function openProfilePopup() {
-    nameInput.value = userInfo.getUserInfo().name;
-    jobInput.value = userInfo.getUserInfo().description;
+    const profileData = userInfo.getUserInfo();
+    nameInput.value = profileData.name;
+    jobInput.value = profileData.description;
     profileFormPopup.open();
   }
   
@@ -41,8 +42,8 @@ placeFormValidator.enableValidation();
 const cardSection = new Section({
   items: initialCards,
   renderer(item) {
-    const card = new Card(item, '#elements__template', function() {
-      imagePopup.open(item.link, item.name, item.alt)
+    const card = new Card(item, '#elements__template', function(data) {
+      imagePopup.open(data.link, data.name, data.alt)
     })            
     const element = card.getElement();
 
@@ -70,7 +71,7 @@ const itemFormPopup = new PopupWithForm('#item_popup', function(data) {
     alt: data['new-place'],
     like: false,
   };
-  cardSection.addItem(newItem);
+  cardSection.renderItem(newItem);
 });
 
 imagePopup.setEventListener();
