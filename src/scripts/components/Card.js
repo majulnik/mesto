@@ -5,7 +5,7 @@ export class Card {
 
     constructor(data, elementTemplate, handleCardClick) {
         this._data = data;
-        this.elementTemplate = elementTemplate;
+        this._elementTemplate = elementTemplate;
         this._handleCardClick = handleCardClick;
     }
 
@@ -17,7 +17,7 @@ export class Card {
     }
 
     _getTemplate() {
-        this._template = document.querySelector(this.elementTemplate).content.querySelector('.elements__item');
+        this._template = document.querySelector(this._elementTemplate).content.querySelector('.elements__item');
     }
 
     _fillCardData() {

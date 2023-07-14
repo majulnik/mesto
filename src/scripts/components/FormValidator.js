@@ -13,17 +13,17 @@ export class FormValidator {
         this._form.addEventListener('submit', (evt) => {
                 evt.preventDefault();
                 setTimeout(() => {
-                    this._toggleButtonState();
+                    this.toggleButtonState();
                 }, 0)
         })
         this._inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
         this._buttonElement = this._form.querySelector(this._config.submitButtonSelector);
-        this._toggleButtonState();
+        this.toggleButtonState();
     
         this._inputList.forEach((input) => {
             input.addEventListener('input', () => {
                 this._toggleInputState(input);
-                this._toggleButtonState();
+                this.toggleButtonState();
             });
         })
     }
@@ -34,8 +34,8 @@ export class FormValidator {
         })
     }
     
-    _toggleButtonState() {
-        if (this._hasInvalidInput(this._inputList)) {
+    toggleButtonState() {
+        if (this._hasInvalidInput()) {
             this._buttonElement.classList.add(this._config.inactiveButtonClass);
             this._buttonElement.disabled = true;
     

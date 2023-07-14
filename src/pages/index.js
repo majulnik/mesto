@@ -24,6 +24,7 @@ const buttonItemPopupOpen = document.querySelector('#openItemPopup');
   
   function openItemPopup() {
     itemFormPopup.open();
+    placeFormValidator.toggleButtonState();
   }
   
   buttonProfilePopupOpen.addEventListener('click', openProfilePopup);
