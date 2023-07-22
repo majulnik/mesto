@@ -17,7 +17,10 @@
     <main>
         <section class="profile">
             <div class="profile__info">
-                <img class="profile__avatar" src="<%=require('./images/avatar-image.jpg')%>" alt="Аватар профиля">
+                <div class="profile__avatar-area">
+                    <img class="profile__avatar" src="<%=require('./images/avatar-image.jpg')%>" alt="Аватар профиля">
+                    <button type="button" class="profile__avatar-edit" aria-label="Редактировать аватар профиля"></button>
+                </div>
                 <div class="profile__intro">
                     <h1 class="profile__name">Юлия Матросова</h1>
                     <button class="profile__button profile__button_type_edit" type="button"
@@ -38,6 +41,7 @@
                         <h2 class="elements__description"></h2>
                         <div class="elements__like-area">
                             <button type="button" class="elements__like" aria-label="Лайк"></button>
+                            <p class="elements__like-counter">1</p>
                         </div>
                     </div>
                 </div>
@@ -88,7 +92,33 @@
             <figcaption id="popupImageName" class="popup__image-name">Название</figcaption>
             <button class="popup__close" id="closeImagePopup" type="button"></button>
         </figure>
-    </div>    
+    </div>
+
+    <!-- Попап "Вы уверены, что хотите удалить карточку?" -->
+    <div class="popup popup_theme_light" id="item_delete-popup">
+        <form class="popup__container popup__container_type_item">
+            <input type='hidden' id="deleteCardId" name="deleteCardId">
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button id="closeItemPopup" class="popup__close" type="button"></button>        
+            <button id="saveItem" class="popup__button" type="submit" title="Удалить карточку"
+                    form="placeForm">Да</button>
+        </form>
+    </div>
+
+    <!-- Попап "Редактирование аватарки пользователя" -->
+    <div class="popup popup_theme_light " id="image_edit-popup">
+        <div class="popup__container popup__container_type_item">
+            <h2 class="popup__title">Обновить аватар</h2>
+            <button id="closeItemPopup" class="popup__close" type="button"></button>
+            <form class='popup__form' id="placeForm" name="NewPlace" novalidate>
+                <input class="popup__input" type="url" placeholder="Обновить аватар" id="new-link" name="new-link" required>
+                <span class="popup__error" id="new-link-error"></span>
+                <button id="saveItem" class="popup__button" type="submit" title="Сохранить изменения"
+                    form="placeForm">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    
 </body>
 
 </html>

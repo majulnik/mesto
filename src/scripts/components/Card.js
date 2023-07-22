@@ -2,11 +2,15 @@ export class Card {
     _template = null;
     _element = null;
     _handleCardClick = null;
+    _cantDelete = null;
+    _deletePopup = null;
 
-    constructor(data, elementTemplate, handleCardClick) {
+    constructor(data, elementTemplate, cantDelete, deletePopup, handleCardClick) {
         this._data = data;
         this._elementTemplate = elementTemplate;
         this._handleCardClick = handleCardClick;
+        this._cantDelete = cantDelete;
+        this._deletePopup = deletePopup;
     }
 
     getElement() {
@@ -25,12 +29,15 @@ export class Card {
         this._elementImage = this._element.querySelector('img');
         const elementsTemplateDescription = this._element.querySelector('.elements__description');
         const elementsTemplateLike = this._element.querySelector('.elements__like');
+        const elementsTemplateLikeCount = this._element.querySelector('.elements__like-counter');
+        elementsTemplateLikeCount.innerText = this._data.likes.length;
 
         this._elementImage.src = this._data.link;
         this._elementImage.alt = this._data.alt;
         elementsTemplateDescription.textContent = this._data.name;
-        if (this._data.like) {
-            elementsTemplateLike.classList.add("elements__like_active");
+        const deleteItem = this._element.querySelector('.elements__delete');
+        if (!this._cantDelete) {
+            deleteItem.remove();
         }
     }
 
@@ -53,8 +60,11 @@ export class Card {
         });
 
         const deleteItem = this._element.querySelector('.elements__delete');
-        deleteItem.addEventListener('click', () => {
-            this._deleteCard();
+        if (deleteItem) {
+            deleteItem.addEventListener('click', () => {
+//            this._deleteCard();
+              this._deletePopup.open();
         });
+       }
     }
 }
