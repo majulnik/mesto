@@ -96,13 +96,14 @@
 
     <!-- Попап "Вы уверены, что хотите удалить карточку?" -->
     <div class="popup popup_theme_light" id="item_delete-popup">
-        <form class="popup__container popup__container_type_item">
-            <input type='hidden' id="deleteCardId" name="deleteCardId">
+        <div class="popup__container popup__container_type_item">
             <h2 class="popup__title">Вы уверены?</h2>
             <button id="closeItemPopup" class="popup__close" type="button"></button>        
-            <button id="saveItem" class="popup__button" type="submit" title="Удалить карточку"
-                    form="placeForm">Да</button>
-        </form>
+            <form id="cardDeleteForm">
+                <button id="saveItem" class="popup__button" type="submit" title="Удалить карточку"
+                form="cardDeleteForm">Да</button>
+            </form>
+        </div>
     </div>
 
     <!-- Попап "Редактирование аватарки пользователя" -->
@@ -110,11 +111,11 @@
         <div class="popup__container popup__container_type_item">
             <h2 class="popup__title">Обновить аватар</h2>
             <button id="closeItemPopup" class="popup__close" type="button"></button>
-            <form class='popup__form' id="placeForm" name="NewPlace" novalidate>
+            <form class='popup__form' id="avatarEditForm" name="NewPlace" novalidate>
                 <input class="popup__input" type="url" placeholder="Обновить аватар" id="new-link" name="new-link" required>
                 <span class="popup__error" id="new-link-error"></span>
                 <button id="saveItem" class="popup__button" type="submit" title="Сохранить изменения"
-                    form="placeForm">Сохранить</button>
+                    form="avatarEditForm">Сохранить</button>
             </form>
         </div>
     </div>
