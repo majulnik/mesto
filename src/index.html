@@ -100,7 +100,7 @@
             <h2 class="popup__title">Вы уверены?</h2>
             <button class="popup__close" type="button"></button>        
             <form id="cardDeleteForm">
-                <button id="saveItem" class="popup__button" type="submit" title="Удалить карточку"
+                <button class="popup__button" type="submit" title="Удалить карточку"
                 form="cardDeleteForm">Да</button>
             </form>
         </div>
@@ -112,8 +112,8 @@
             <h2 class="popup__title">Обновить аватар</h2>
             <button class="popup__close" type="button"></button>
             <form class='popup__form' id="avatarEditForm" name="NewPlace" novalidate>
-                <input class="popup__input" type="url" placeholder="Обновить аватар" id="new-link" name="new-link" required>
-                <span class="popup__error" id="new-link-error"></span>
+                <input class="popup__input" type="url" placeholder="Обновить аватар" name="new-link" required>
+                <span class="popup__error"></span>
                 <button class="popup__button" type="submit" title="Сохранить изменения"
                     form="avatarEditForm">Сохранить</button>
             </form>
