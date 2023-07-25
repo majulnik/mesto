@@ -170,7 +170,7 @@ const itemFormPopup = new PopupWithForm('#item_popup', function (data, button) {
   .catch(err => console.log(err))
   .finally(() => {
     markButtonSaved(button)
-    avatarEditFormPopup.close()
+    itemFormPopup.close()
   })
 });
 
