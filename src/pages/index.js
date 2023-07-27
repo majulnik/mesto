@@ -4,8 +4,9 @@ import { UserInfo } from '../scripts/components/UserInfo.js'
 import { PopupWithForm } from '../scripts/components/PopupWithForm.js'
 import { PopupWithImage } from '../scripts/components/PopupWithImage.js'
 import { FormValidator } from '../scripts/components/FormValidator.js'
-import { initialCards, validationConfig } from '../scripts/utils/constants.js'
-import { API } from '../scripts/utils/api.js'
+import { validationConfig } from '../scripts/utils/constants.js'
+import { Api } from '../scripts/utils/Api.js'
+import {renderLoading} from '../scripts/utils/functions.js'
 import './index.css';
 
 const profileForm = document.querySelector('.popup__container_type_profile');
@@ -15,9 +16,9 @@ const buttonProfilePopupOpen = document.querySelector('.profile__button_type_edi
 const buttonItemPopupOpen = document.querySelector('#openItemPopup');
 const avatar = document.querySelector('.profile__avatar');
 const buttonEditAvatar = document.querySelector('.profile__avatar-edit');
-let userId;
+let userId, cardSection;
 
-const api = new API({
+const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-71',
   headers: {
     authorization: '377fe50e-25a8-44d8-a25d-c437a9f3d8a8',
@@ -59,16 +60,20 @@ placeFormValidator.enableValidation();
 const avatarEditFormValidator = new FormValidator(validationConfig, document.querySelector('#avatarEditForm'))
 avatarEditFormValidator.enableValidation();
 
-function renderServerCard(card) {
-  const newItem =
-  {
-    name: card.name,
-    link: card.link,
-    alt: card.name,
-    likes: card.likes,
-    ownerId: card.owner._id,
-    id: card._id,
+
+function transformCardFields(card) {
+  return {
+      name: card.name,
+      link: card.link,
+      alt: card.name,
+      likes: card.likes,
+      ownerId: card.owner._id,
+      id: card._id,
   };
+}
+
+function renderServerCard(card) {
+  const newItem = transformCardFields(card);
   cardSection.renderItem(newItem);
 }
 
@@ -85,37 +90,39 @@ function deleteCard(data) {
   deleteCardPopup.open();
 };
 
-function addLike(cardId) {
-  return api.addLike(cardId);
+function addLike(cardId, card) {
+  return api.addLike(cardId).then(result => {
+    card.updateLikes(result.likes);
+  }).catch(err => {
+    console.log(err);
+  });
 };
 
-function removeLike(cardId) {
-  return api.deleteLike(cardId);
+function removeLike(cardId, card) {
+  return api.deleteLike(cardId).then(result => {
+    card.updateLikes(result.likes);
+  }).catch(err => {
+    console.log(err);
+  });
 };
 
-function markButtonSaved(button) {
-  button.innerText = 'Сохранено';
-  button.style.opacity = 1;
-}
+const initialData = [api.getInitialCards(), api.getUserInfo()];
+Promise.all(initialData).then(([cards, user]) => {
+  renderServerUser(user);
 
-function markButtonSaving(button) {
-  button.innerText = 'Сохранение...';
-  button.style.opacity = 0.5;
-}
+  cardSection = new Section(
+    cards.reverse().map(transformCardFields),
+    item => {
+      const card = new Card(item, '#elements__template', user._id, deleteCard, addLike, removeLike, function (data) {
+        imagePopup.open(data.link, data.name, data.alt)
+      })
+      const element = card.getElement();
+  
+      return element;
+    }, '#elements__container');
 
-const cardSection = new Section({
-  items: [],
-  renderer(item) {
-    const card = new Card(item, '#elements__template', userId, deleteCard, addLike, removeLike, function (data) {
-      imagePopup.open(data.link, data.name, data.alt)
-    })
-    const element = card.getElement();
-
-    return element;
-  }
-
-}, '#elements__container');
-cardSection.render();
+    cardSection.renderItems();
+}).catch(err => console.log(err));
 
 const userInfo = new UserInfo({
   name: ".profile__name",
@@ -124,53 +131,55 @@ const userInfo = new UserInfo({
 
 const imagePopup = new PopupWithImage('#image_popup');
 const profileFormPopup = new PopupWithForm('#profile_popup', function (data, button) {
-  markButtonSaving(button);
+  renderLoading(button);
   api.editUser({
     name: data['profile-name'],
     about: data['profile-description']
   }).then(user => {
-    renderServerUser(user)
+    renderServerUser(user);
+    profileFormPopup.close();
   }).catch(err => console.log(err))
     .finally(() => {
-      markButtonSaved(button)
-      profileFormPopup.close()
+      renderLoading(button)
     })
 });
 
 const deleteCardPopup = new PopupWithForm('#item_delete-popup', function (data, button) {
-  markButtonSaving(button);
+  renderLoading(button);
   api.deleteCard(currentDeleteData.id).then(result => {
-    currentDeleteData.card.deleteCard()
+    currentDeleteData.card.deleteCard();
+    deleteCardPopup.close();
   }).catch(err => console.log(err))
   .finally(() => {
-    markButtonSaved(button)
-    deleteCardPopup.close()
+    renderLoading(button)
   })
 });
 
 const avatarEditFormPopup = new PopupWithForm('#image_edit-popup', function (data, button) {
-  markButtonSaving(button);
+  renderLoading(button);
   api.editAvatar({
     avatar: data['new-link'],
   }).then(user => {
     renderServerUser(user)
+    avatarEditFormPopup.close()
   }).catch(err => console.log(err))
   .finally(() => {
-    markButtonSaved(button)
-    avatarEditFormPopup.close()
+    renderLoading(button);
   })
 });
 
 const itemFormPopup = new PopupWithForm('#item_popup', function (data, button) {
-  markButtonSaving(button);
+  renderLoading(button);
   api.addCard({
     name: data['new-place'],
     link: data['new-link'],
-  }).then(card => renderServerCard(card))
+  }).then(card => {
+    renderServerCard(card);
+    itemFormPopup.close()
+  })
   .catch(err => console.log(err))
   .finally(() => {
-    markButtonSaved(button)
-    itemFormPopup.close()
+    renderLoading(button)
   })
 });
 
@@ -179,11 +188,3 @@ profileFormPopup.setEventListener();
 itemFormPopup.setEventListener();
 deleteCardPopup.setEventListener();
 avatarEditFormPopup.setEventListener();
-
-const initialData = [api.getCards(), api.getUserInfo()];
-Promise.all(initialData).then(([cards, user]) => {
-  renderServerUser(user);
-  cards.reverse().forEach(card => {
-    renderServerCard(card);
-  });
-})

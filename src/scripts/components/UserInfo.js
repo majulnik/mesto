@@ -15,7 +15,9 @@ export class UserInfo {
     }
 
     setUserInfo(userInfoValues) {
-        this._nameField.textContent = userInfoValues.name;
-        this._descriptionField.textContent = userInfoValues.description;
+        if (userInfoValues) {
+            this._nameField.textContent = userInfoValues.name;
+            this._descriptionField.textContent = userInfoValues.description;   
+        }
     }
 }

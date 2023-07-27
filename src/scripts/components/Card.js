@@ -46,19 +46,17 @@ export class Card {
         this._setIsLiked();
     }
 
-    _likeCard(evt) {
+    updateLikes(likes) {
+        this._data.likes = likes;
+        this._setIsLiked();
+        this._elementsTemplateLikeCount.innerText = this._data.likes.length;
+    }
+
+    _likeCard() {
         if (this._elementsTemplateLike.classList.contains('elements__like_active')) {
-            this._removeLikeCallback(this._data.id).then(card => {
-                this._data.likes = card.likes;
-                this._setIsLiked();
-                this._elementsTemplateLikeCount.innerText = this._data.likes.length;
-              });
+            this._removeLikeCallback(this._data.id, this);
         } else {
-            this._addLikeCallback(this._data.id).then(card => {
-                this._data.likes = card.likes;
-                this._setIsLiked();
-                this._elementsTemplateLikeCount.innerText = this._data.likes.length;
-              });
+            this._addLikeCallback(this._data.id, this);
         }
     }
 
